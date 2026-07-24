@@ -1,0 +1,25 @@
+# Fichiers et dossiers liés à Node.js
+node_modules
+npm-debug.log
+yarn-error.log
+bun.lock
+
+# Fichiers et dossiers de l'application source
+src/
+public/
+
+# Fichiers de configuration Firebase et Google Cloud
+.firebaserc
+firebase.json
+firebase-applet-config.json
+
+# Fichiers d'environnement (secrets)
+.env
+.env.*
+
+# Autres fichiers inutiles pour la production
+.git
+.gitignore
+README.md
+tsconfig.json
+vite.config.ts

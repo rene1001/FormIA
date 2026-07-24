@@ -1,0 +1,6 @@
+{
+  "name": "FormFlow",
+  "description": "Une application web intelligente pour créer, personnaliser et analyser des formulaires Google Forms à l'aide de l'IA (Gemini).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

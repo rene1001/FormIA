@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index.ts" },
+    { "source": "/logo.jpg", "destination": "/api/index.ts" },
+    { "source": "/manifest.json", "destination": "/api/index.ts" },
+    { "source": "/sw.js", "destination": "/api/index.ts" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
