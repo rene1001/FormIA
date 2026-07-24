@@ -26,7 +26,27 @@ export async function startServer() {
 
   // Serve Logo Image Directly for Manifest and PWAs
   app.get("/logo.jpg", (req, res) => {
-    res.sendFile(path.join(process.cwd(), "src/assets/images/formflow_ai_logo_1784669877363.jpg"));
+    // In production (Vercel/dist), assets are hashed; serve from src for dev or from dist for prod
+    const devPath = path.join(process.cwd(), "src/assets/images/formflow_ai_logo_1784669877363.jpg");
+    const prodPath = path.join(process.cwd(), "dist/assets/formflow_ai_logo_1784669877363.jpg");
+    const fs = require("fs");
+    // Try source path first (local dev), then find in dist/assets (production)
+    if (fs.existsSync(devPath)) {
+      res.sendFile(devPath);
+    } else {
+      // In Vercel, find any .jpg in dist/assets
+      try {
+        const distAssets = path.join(process.cwd(), "dist/assets");
+        const files = fs.readdirSync(distAssets).filter((f: string) => f.startsWith("formflow_ai_logo") && f.endsWith(".jpg"));
+        if (files.length > 0) {
+          res.sendFile(path.join(distAssets, files[0]));
+        } else {
+          res.status(404).send("Logo not found");
+        }
+      } catch {
+        res.status(404).send("Logo not found");
+      }
+    }
   });
 
   // PWA Manifest and Service Worker Endpoint
